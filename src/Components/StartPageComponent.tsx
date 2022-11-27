@@ -1,7 +1,10 @@
-import React from 'react';
+import {useEffect}  from 'react';
 import {Box, Button, Center, Flex, Text} from "@chakra-ui/react";
 import {Link, useNavigate} from "react-router-dom";
+import * as dayjs from 'dayjs';
 import axios from "axios";
+import Clock from 'react-live-clock';
+
 
 const StartPageComponent = () => {
 
@@ -22,7 +25,25 @@ const StartPageComponent = () => {
         }
 
     }
+    
 
+    
+    const data = new Date();
+    let week = data.getDay()
+
+    useEffect(() => {
+
+        if (week === 0) 
+        {
+            week = week + 7
+        }
+
+    }, [])
+    
+    // const week = week.getDay()
+    // const day = getDay()
+
+    
     return (
         <>
          <Center>
@@ -35,6 +56,8 @@ const StartPageComponent = () => {
                     <Text>Select Account</Text>
                     <Link to={"/login"}><Button w={"5rem"}>Admin</Button></Link>
                         <Button onClick={LoginUser} w={"5rem"}>User</Button>
+                        <Button onClick={() => { console.log(week)}}>test</Button>
+                        
                     </Flex>
                 </Center>
              </Box>
@@ -45,3 +68,7 @@ const StartPageComponent = () => {
 };
 
 export default StartPageComponent;
+
+function getDay() {
+    throw new Error('Function not implemented.');
+}
