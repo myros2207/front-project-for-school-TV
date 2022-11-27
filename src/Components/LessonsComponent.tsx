@@ -1,29 +1,63 @@
-import { Flex, Grid, GridItem, Box, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Flex, Grid, GridItem, Box, Text, Button } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import {bakgroundGlobal, bakgroundLessonList, bakgroundMenu, bakgroundList} from './UI/Color';
 import Clock from 'react-live-clock';
+import axios from 'axios';
 
 const LessonsComponent = () => { 
 
 
     const name = ["test", "test1", "test2", "test3", "tes4", "test5", "tes6", "tes7", "test8", "test9", "test10", "test11", "tes12", "tes13", "tes14", "test15"]
 
-    const lesson = []
+    const [lesson, setLesson] = useState()
 
-    // const [day, setDay] = useState(["Poniedziałek"])
+    const classesName = ["Programin", "e-sport", "Grafik"]
+
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const d = new Date();
-    let day = weekday[d.getDay()];
-    // setDay(weekday[d.getDay()])
+    let day = weekday[d.getDay()]; 
+
     
-    // let day = weekday[d.getDay()];
+    let week = d.getDay()
+
+    // useEffect(()  => {
+
+    //     const TestNumerDay = async () => {
+    //     if (week === 0) 
+    //     {
+    //         week = week + 7
+    //     }
+    //    await GetLessonByDay
+    // }
+
+    //     TestNumerDay()
+    // }, [])
+
+    useEffect(() => {
+      GetLessonByDay()
+    }, [])
+    
+
+    const GetLessonByDay = async () => {
+        if (week === 0) 
+            {
+                week = week + 7
+            }
+        const listLesson = await axios.get("http://localhost:4598/lesson/"+week)
+        setLesson(listLesson.data)
+    }
+    
     return (
 
         <div>
             <Box>
             <Flex bg={bakgroundGlobal} >
                 <Box w={"9vw"} mr="1vw" bg={bakgroundMenu}>
-                    <Text h="5vh" fontSize={"2rem"} display={"flex"} flexDirection ="column" alignItems={"center"} justifyContent={'center'}> <Clock format={'HH:mm:ss'} ticking={true} timezone={'PL/Poland'} /> </Text>
+                    {/* @ts-ignore */}
+                    <Text h="5vh" fontSize={"2rem"} display={"flex"} flexDirection ="column" alignItems={"center"} justifyContent={'center'}> 
+                    {/* <Clock format={'HH:mm:ss'} ticking={true} timezone={'PL/Poland'} /> */}
+                    Time
+                     </Text>
                   <Box display={"flex"} flexDirection="column">
                     <Box h ="95vh" bg="blur">
                             {
@@ -36,6 +70,12 @@ const LessonsComponent = () => {
                 
                     <Box textAlign={"center"} w='90vw' h='5vh' bg={bakgroundMenu}>
                         <Text h="5vh" fontSize={"2rem"} display={"flex"} flexDirection ="column" alignItems={"center"} justifyContent={'center'}>{day}</Text>
+
+                            <Flex>
+                                {
+                                    classesName.map((name) => <Box>{name}</Box>)
+                                }
+                            </Flex>
                             <Box display={"flex"}>
                                 <Box bg={bakgroundLessonList} mt="1" w="5" h="94vh" display={"flex"} flexDirection={"column"} >
 
@@ -56,6 +96,7 @@ const LessonsComponent = () => {
                                     
                                 </Box>
                                 
+                                <Button onClick={GetLessonByDay}>Chek</Button>
                             </Box>
                     </Box>
                 

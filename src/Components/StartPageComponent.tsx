@@ -31,14 +31,14 @@ const StartPageComponent = () => {
     const data = new Date();
     let week = data.getDay()
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (week === 0) 
-        {
-            week = week + 7
-        }
+    //     if (week === 0) 
+    //     {
+    //         week = week + 7
+    //     }
 
-    }, [])
+    // }, [])
     
     // const week = week.getDay()
     // const day = getDay()
