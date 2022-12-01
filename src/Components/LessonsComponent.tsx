@@ -46,6 +46,16 @@ const LessonsComponent = () => {
         const listLesson = await axios.get("http://localhost:4598/lesson/"+week)
         setLesson(listLesson.data)
     }
+
+    const ChekrError = () => {
+        try {
+
+        }
+        catch {
+            console.log("te")
+        }
+    }
+
     
     return (
 
@@ -55,8 +65,8 @@ const LessonsComponent = () => {
                 <Box w={"9vw"} mr="1vw" bg={bakgroundMenu}>
                     {/* @ts-ignore */}
                     <Text h="5vh" fontSize={"2rem"} display={"flex"} flexDirection ="column" alignItems={"center"} justifyContent={'center'}> 
-                    {/* <Clock format={'HH:mm:ss'} ticking={true} timezone={'PL/Poland'} /> */}
-                    Time
+                     <Clock onChange={ChekrError} format={'HH:mm:ss'} ticking={true} timezone={'Europe/Warsaw'} />
+                    {/*Time*/}
                      </Text>
                   <Box display={"flex"} flexDirection="column">
                     <Box h ="95vh" bg="blur">
