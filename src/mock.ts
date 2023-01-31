@@ -66,14 +66,14 @@ export const mockHoursLesson = [
 export const mockLesson = [
     {
         lessonName: "Programowania",
-        lessonTime: "11:20 - 12:05",
+        lessonTime: "24:00",
         className: "3k",
         hallNumber: "205dmo"
     },
     {
         lessonName: "Programowania",
         lessonTime: "9:40 - 10:25",
-        className: "2k",
+        className: "1k",
         hallNumber: "206dmo"
     },
     {
@@ -81,7 +81,7 @@ export const mockLesson = [
         lessonTime: "9:40 - 10:25",
         className: "4k",
         hallNumber: "207dmo"
-    }
+    },
 ]
 
 
